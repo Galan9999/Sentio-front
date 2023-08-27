@@ -6,6 +6,12 @@ import {
 import renderRouterWithProviders from "../../utils/testUtils/renderRouterWithProviders";
 import DetailPage from "./DetailPage";
 
+let mockedLoadQuote = jest.fn();
+
+jest.mock("../../hooks/useQuotesApi/useQuotesApi", () => () => ({
+  loadQuote: mockedLoadQuote,
+}));
+
 describe("Given the DetaiPage component", () => {
   describe("When its rendered and there is a quote of 'Barack Obama' in the store", () => {
     test("Then it should show a detail of 'Barack Obama'", () => {
@@ -21,5 +27,12 @@ describe("Given the DetaiPage component", () => {
 
       expect(authorName).toBeInTheDocument();
     });
+  });
+  test("Then it should call loadQuote function", () => {
+    renderRouterWithProviders({
+      ui: <DetailPage />,
+      preloadedState: mockedPreloadedStateDetail,
+    });
+    expect(mockedLoadQuote).toBeCalled();
   });
 });
