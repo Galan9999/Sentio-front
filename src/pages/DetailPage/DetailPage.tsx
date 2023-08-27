@@ -13,11 +13,18 @@ const DetailPage = (): JSX.Element => {
   }, [loadQuote, id]);
 
   const { quote } = useAppSelector((state) => state);
+  const {
+    ui: { isLoading },
+  } = useAppSelector((state) => state);
 
   return (
-    <DetailPageStyled className="detail-container">
-      <Detail quote={quote} />
-    </DetailPageStyled>
+    <>
+      {!isLoading && (
+        <DetailPageStyled className="detail-container">
+          <Detail quote={quote} />
+        </DetailPageStyled>
+      )}
+    </>
   );
 };
 
