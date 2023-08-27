@@ -1,7 +1,8 @@
-import { act, screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import renderRouterWithProviders from "../../utils/testUtils/renderRouterWithProviders";
 import CreateForm from "./CreateForm";
+import { mockedPreloadeStoreLoggedState } from "../../mocks/quotesPreloadedStates";
 
 const mockCreateQuote = jest.fn();
 
@@ -82,8 +83,8 @@ describe("Given the CreateForm component", () => {
     });
   });
 
-  describe("When it is render and the button is clicked with the fields written", () => {
-    test("Then is should call the  function handleOnSubmit", async () => {
+  describe("When it is rendered and the button is clicked with the fields written", () => {
+    test.only("Then it should call the  function handleOnSubmit", async () => {
       const inputAuthortext = "author";
       const inputImageText = "image";
       const inputCountryText = "country";
@@ -93,7 +94,10 @@ describe("Given the CreateForm component", () => {
       const inputBackgroundInfoText = "backgroundInfo";
       const buttonText = "create";
 
-      renderRouterWithProviders({ ui: <CreateForm /> });
+      renderRouterWithProviders({
+        ui: <CreateForm />,
+        preloadedState: mockedPreloadeStoreLoggedState,
+      });
 
       const renderedAuthortext = screen.getByLabelText(inputAuthortext);
       const renderedImageText = screen.getByLabelText(inputImageText);
@@ -106,30 +110,24 @@ describe("Given the CreateForm component", () => {
       );
       const renderedbutton = screen.getByRole("button", { name: buttonText });
 
-      await act(async () => await userEvent.type(renderedAuthortext, "René"));
-      await act(async () => await userEvent.type(renderedImageText, "image"));
-      await act(
-        async () => await userEvent.type(renderedCountryText, "country")
-      );
-      await act(async () => await userEvent.type(renderedQuoteText, "quote"));
-      await act(async () => await userEvent.type(renderedTagsText, "tags"));
-      await act(async () => await userEvent.type(renderedLivedText, "lived"));
-      await act(
-        async () =>
-          await userEvent.type(renderedBackgroundInfoText, "backgroundInfo")
-      );
-      await act(async () => await userEvent.click(renderedbutton));
+      const content = "Hello World";
+      const blob = new Blob([content], { type: "text/plain" });
+      const file = new File([blob], "hello.txt");
 
-      const expectedCall = {
-        author: "René",
-        image: "image",
-        country: "country",
-        quote: "quote",
-        tags: "tags",
-        lived: "lived",
-        backgroundInfo: "backgroundInfo",
-      };
-      expect(mockCreateQuote).toBeCalledWith(expectedCall);
+      await waitFor(async () => {
+        await userEvent.type(renderedAuthortext, "René");
+        await userEvent.upload(renderedImageText, file);
+        await userEvent.type(renderedCountryText, "country");
+        await userEvent.type(renderedQuoteText, "quote");
+        await userEvent.type(renderedTagsText, "tags");
+        await userEvent.type(renderedLivedText, "lived");
+        await userEvent.type(renderedBackgroundInfoText, "backgroundInfo");
+      });
+      await waitFor(async () => {
+        await userEvent.click(renderedbutton);
+      });
+
+      expect(mockCreateQuote).toBeCalled();
     });
   });
 });

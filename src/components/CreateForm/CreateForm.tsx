@@ -15,7 +15,7 @@ const CreateForm = (): JSX.Element => {
   const initialState: QuoteFormStructure = {
     author: "",
     backgroundInfo: "",
-    image: "",
+    image: null,
     country: "",
     lived: "",
     quote: "",
@@ -33,6 +33,11 @@ const CreateForm = (): JSX.Element => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, files } = event.target;
+    setFormData({ ...formData, [name]: files?.[0] });
+  };
+
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -44,7 +49,7 @@ const CreateForm = (): JSX.Element => {
 
     newQuote.append("owner", id);
 
-    await createQuote(formData);
+    await createQuote(newQuote);
     setFormData({ ...initialState });
   };
 
@@ -69,13 +74,12 @@ const CreateForm = (): JSX.Element => {
         image
       </label>
       <input
-        onChange={handleInputChange}
-        value={formData.image}
+        onChange={handleImageChange}
         className="create-form__input"
         placeholder="introduce image"
         name="image"
         id="image"
-        type="text"
+        type="file"
         autoComplete="off"
         required
       ></input>
