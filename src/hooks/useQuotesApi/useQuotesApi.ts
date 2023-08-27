@@ -12,11 +12,7 @@ import {
   unsetIsLoadingActionCreator,
 } from "../../store/features/ui/uiSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import {
-  CreateQuoteStructure,
-  QuotesStructure,
-  QuoteStructure,
-} from "../../types";
+import { QuotesStructure, QuoteStructure } from "../../types";
 import { errorTypes, succesTypes } from "../types";
 
 const { defaultErrorMessage, cuotesNotFoundErrorMessage } = errorTypes;
@@ -93,18 +89,17 @@ const useQuotesApi = () => {
   );
 
   const createQuote = useCallback(
-    async (newQuote: CreateQuoteStructure) => {
+    async (formData: FormData) => {
       try {
         uiDispatch(setIsLoadingActionCreator());
-        const response = await fetch(
+        const response: Response = await fetch(
           `${process.env.REACT_APP_URL_API_USERS}${quotesRelativePath}${createRealtivePath}`,
           {
             method: "POST",
-            body: JSON.stringify(newQuote),
             headers: {
-              "Content-Type": "application/json",
               Authorization: `Bearer ${token} `,
             },
+            body: formData,
           }
         );
 

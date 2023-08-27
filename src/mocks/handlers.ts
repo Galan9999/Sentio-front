@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { errorTypes } from "../hooks/types";
-import { CreateQuoteStructure } from "../types";
+import { QuoteStructure } from "../types";
 
 const {
   unauthorizedErrorMessage,
@@ -19,6 +19,7 @@ const mockedQuotes = {
   quotes: [
     {
       id: "1",
+      owner: "",
       author: "Frida Kahlo",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg/440px-Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg",
@@ -35,6 +36,7 @@ const mockedQuotes = {
 const mockedQuote = {
   quote: {
     id: "1",
+    owner: "",
     author: "Frida Kahlo",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg/440px-Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg",
@@ -47,8 +49,10 @@ const mockedQuote = {
   },
 };
 
-const mockedNewQuote: CreateQuoteStructure = {
+const mockedNewQuote: QuoteStructure = {
+  id: "",
   author: "Frida Kahlo",
+  owner: "",
   image:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg/440px-Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg",
   country: "Mexico",
