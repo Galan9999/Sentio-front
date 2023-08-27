@@ -1,11 +1,12 @@
 import { QuoteStructure } from "../../../types";
 import { loadQuoteActionCreator, quoteReducer } from "./quoteSlice";
 
-describe("Given the quotes reducer function", () => {
+describe("Given the quote reducer function", () => {
   describe("When its called with loadQuote action", () => {
-    test("Then it should return a list of quotes", () => {
+    test("Then it should return a quote", () => {
       const currentQuoteState: QuoteStructure = {
         id: "",
+        owner: "",
         author: "",
         image: "",
         country: "",
@@ -17,6 +18,7 @@ describe("Given the quotes reducer function", () => {
 
       const expectedQuoteState: QuoteStructure = {
         id: "",
+        owner: "",
         author: "Albert Einstein",
         image:
           "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/440px-Albert_Einstein_Head.jpg",

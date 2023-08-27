@@ -8,7 +8,6 @@ import DetailPageStyled from "./DetailPageStyled";
 const DetailPage = (): JSX.Element => {
   const { loadQuote } = useQuotesApi();
   const { id } = useParams();
-
   useEffect(() => {
     loadQuote(id!);
   }, [loadQuote, id]);

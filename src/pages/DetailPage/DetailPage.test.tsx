@@ -8,7 +8,7 @@ import DetailPage from "./DetailPage";
 
 describe("Given the DetaiPage component", () => {
   describe("When its rendered and there is a quote of 'Barack Obama' in the store", () => {
-    test.only("Then it should show a detail of 'Barack Obama'", () => {
+    test("Then it should show a detail of 'Barack Obama'", () => {
       renderRouterWithProviders({
         ui: <DetailPage />,
         preloadedState: mockedPreloadedStateDetail,

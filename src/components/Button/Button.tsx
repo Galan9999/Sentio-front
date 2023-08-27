@@ -3,7 +3,7 @@ import ButtonStyled from "./ButtonStyled";
 interface ButtonProps {
   text?: string;
   icon?: JSX.Element;
-  action?: () => void;
+  action?: () => void | Promise<void>;
   isDisabled?: boolean;
   className?: string;
   ariaLabel?: string;

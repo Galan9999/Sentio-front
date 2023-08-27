@@ -8,6 +8,8 @@ const CreateFormStyled = styled.form`
 
   .create-form {
     padding-top: 120px;
+    border-radius: ${(props) => props.theme.borderRadius};
+    padding: 10px;
     &__input {
       height: 60px;
       font-size: ${(props) => props.theme.fontSize.bigSize};
@@ -18,8 +20,13 @@ const CreateFormStyled = styled.form`
       text-transform: capitalize;
       font-size: ${(props) => props.theme.fontSize.bigSize};
     }
-    border-radius: ${(props) => props.theme.borderRadius};
-    padding: 10px;
+    &__textarea {
+      height: 150px;
+      font-size: ${(props) => props.theme.fontSize.bigSize};
+      color: ${(props) => props.theme.colors.mainTextColor};
+      padding: 20px;
+      font-family: inherit;
+    }
 
     &__register-section {
       display: flex;
@@ -27,6 +34,7 @@ const CreateFormStyled = styled.form`
       text-align: center;
     }
   }
+
   .button {
     padding: 20px;
   }

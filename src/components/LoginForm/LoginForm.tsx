@@ -7,26 +7,36 @@ import LoginFormStyled from "./LoginFormStyled";
 const LoginForm = () => {
   const { loginUser } = useUserApi();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleChangeUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
+  const initialState: LoginCredentials = {
+    username: "",
+    password: "",
   };
 
-  const handleChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
+  const [loginCredentials, setLoginCredentials] = useState(initialState);
+  let { password, username } = loginCredentials;
 
-  const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleUsername = (event: React.FormEvent<HTMLInputElement>) => {
     event.preventDefault();
 
-    const loginCredentials: LoginCredentials = {
-      username,
-      password,
-    };
+    username = (event.target as HTMLInputElement).value;
 
-    loginUser(loginCredentials);
+    setLoginCredentials({ password, username });
+  };
+
+  const handlePassword = (event: React.FormEvent<HTMLInputElement>) => {
+    event.preventDefault();
+
+    password = (event.target as HTMLInputElement).value;
+
+    setLoginCredentials({ password, username });
+  };
+
+  const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    await loginUser(loginCredentials);
+
+    setLoginCredentials({ ...initialState });
   };
 
   return (
@@ -35,8 +45,8 @@ const LoginForm = () => {
         username
       </label>
       <input
-        onChange={handleChangeUsername}
-        value={username}
+        onChange={handleUsername}
+        value={loginCredentials.username}
         className="login-form__input"
         placeholder="introduce username"
         name="username"
@@ -49,8 +59,8 @@ const LoginForm = () => {
         password
       </label>
       <input
-        onChange={handleChangePassword}
-        value={password}
+        onChange={handlePassword}
+        value={loginCredentials.password}
         className="login-form__input"
         placeholder="introduce password"
         name="password"
@@ -58,6 +68,7 @@ const LoginForm = () => {
         type="password"
         required
       ></input>
+
       <Button className="login-button" text="log-in" />
     </LoginFormStyled>
   );

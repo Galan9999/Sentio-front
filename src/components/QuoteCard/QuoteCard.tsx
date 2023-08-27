@@ -54,7 +54,7 @@ const QuoteCard = ({ quote }: QuoteCardProps): JSX.Element => {
               icon={deleteIcon}
               className={"delete"}
               ariaLabel={"delete"}
-              action={() => deleteQuoteById(quote.id)}
+              action={async () => await deleteQuoteById(quote.id)}
             />
           )}
         </div>
