@@ -8,6 +8,7 @@ import {
 export const mockedQuotes: QuotesStructure = [
   {
     id: "1",
+    owner: "",
     author: "Catalina",
     image: "",
     country: "",
@@ -18,6 +19,7 @@ export const mockedQuotes: QuotesStructure = [
   },
   {
     id: "2",
+    owner: "",
     author: "Carles",
     image: "",
     country: "",
@@ -37,6 +39,7 @@ export const mockedPreloadeStoreWithListState: StoreStructure = {
   quotes: [
     {
       id: "1",
+      owner: "",
       author: "Catalina",
       image: "image",
       country: "Argentina",
@@ -47,6 +50,7 @@ export const mockedPreloadeStoreWithListState: StoreStructure = {
     },
     {
       id: "2",
+      owner: "",
       author: "Carles",
       image: "image",
       country: "Spain",
@@ -59,7 +63,11 @@ export const mockedPreloadeStoreWithListState: StoreStructure = {
 };
 
 export const mockedPreloadeStoreLoggedState: StoreStructure = {
-  user: { isLogged: true, token: "tokensito" },
+  user: {
+    isLogged: true,
+    token:
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NTNiYzcwNDU5MGQxMjg3Yzc1YWI0NiIsInVzZXJuYW1lIjoiQ2FybGVzIiwiaWF0IjoxNjkyOTYxNTk1fQ.kq0OfXcsP-UnSmryl9y6cbaPbx6tqzTFRC1zy_OquTA",
+  },
   ui: {
     isLoading: false,
     modal: { isError: false, message: "", isSuccess: false },
@@ -67,6 +75,7 @@ export const mockedPreloadeStoreLoggedState: StoreStructure = {
   quotes: [
     {
       id: "1",
+      owner: "",
       author: "Barack Obama",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/440px-President_Barack_Obama.jpg",
@@ -80,6 +89,7 @@ export const mockedPreloadeStoreLoggedState: StoreStructure = {
     },
     {
       id: "2",
+      owner: "",
       author: "Albert Einstein",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/440px-Albert_Einstein_Head.jpg",
@@ -103,6 +113,7 @@ export const mockedPreloadedStateDetail: StoreDetailStructure = {
   quotes: [
     {
       id: "1",
+      owner: "",
       author: "Barack Obama",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/440px-President_Barack_Obama.jpg",
@@ -116,6 +127,7 @@ export const mockedPreloadedStateDetail: StoreDetailStructure = {
     },
     {
       id: "2",
+      owner: "",
       author: "Albert Einstein",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/440px-Albert_Einstein_Head.jpg",
@@ -130,6 +142,7 @@ export const mockedPreloadedStateDetail: StoreDetailStructure = {
   ],
   quote: {
     id: "1",
+    owner: "",
     author: "Barack Obama",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/440px-President_Barack_Obama.jpg",
@@ -145,6 +158,7 @@ export const mockedPreloadedStateDetail: StoreDetailStructure = {
 
 export const mockObamaCard: QuoteStructure = {
   id: "1",
+  owner: "",
   author: "Barack Obama",
   image:
     "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/President_Barack_Obama.jpg/440px-President_Barack_Obama.jpg",

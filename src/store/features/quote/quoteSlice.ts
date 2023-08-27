@@ -3,6 +3,7 @@ import { QuoteStructure } from "../../../types";
 
 const initialState: QuoteStructure = {
   id: "",
+  owner: "",
   author: "",
   image: "",
   country: "",

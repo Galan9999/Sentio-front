@@ -44,6 +44,7 @@ export interface NotLoggedUser {
 
 export interface QuoteStructure {
   id: string;
+  owner: string;
   author: string;
   image: string;
   country: string;
@@ -53,24 +54,16 @@ export interface QuoteStructure {
   backgroundInfo: string;
 }
 
-export interface QuoteFormStructure {
-  author: string;
-  image: string;
-  country: string;
-  quote: string;
-  tags: string;
-  lived: string;
-  backgroundInfo: string;
+export interface ApiQuotesStructure {
+  quotes: QuotesStructure;
 }
 
-export interface CreateQuoteStructure {
-  author: string;
-  image: string;
-  country: string;
-  quote: string;
-  tags: string;
-  lived: string;
-  backgroundInfo: string;
+export interface QuoteFormStructure
+  extends Pick<
+    QuoteStructure,
+    "author" | "country" | "quote" | "tags" | "lived" | "backgroundInfo"
+  > {
+  image: File | null;
 }
 
 export type QuotesStructure = QuoteStructure[];

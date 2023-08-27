@@ -11,6 +11,7 @@ describe("Given the quotes reducer function", () => {
       const currentQuotesState: QuotesStructure = [
         {
           id: "",
+          owner: "",
           author: "",
           image: "",
           country: "",
@@ -23,6 +24,7 @@ describe("Given the quotes reducer function", () => {
       const expectedQuotesState: QuotesStructure = [
         {
           id: "",
+          owner: "",
           author: "Albert Einstein",
           image:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/440px-Albert_Einstein_Head.jpg",
@@ -49,6 +51,7 @@ describe("Given the quotes reducer function", () => {
       const currentQuotesState: QuotesStructure = [
         {
           id: "",
+          owner: "",
           author: "Albert Einstein",
           image:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/440px-Albert_Einstein_Head.jpg",
@@ -62,6 +65,7 @@ describe("Given the quotes reducer function", () => {
         },
         {
           id: "1",
+          owner: "",
           author: "Frida Kahlo",
           image:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg/440px-Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg",
@@ -76,6 +80,7 @@ describe("Given the quotes reducer function", () => {
       const expectedQuotesState: QuotesStructure = [
         {
           id: "1",
+          owner: "",
           author: "Frida Kahlo",
           image:
             "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg/440px-Frida_Kahlo%2C_by_Guillermo_Kahlo.jpg",

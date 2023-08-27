@@ -4,6 +4,7 @@ import { QuotesStructure } from "../../../types";
 const initialState: QuotesStructure = [
   {
     id: "",
+    owner: "",
     author: "",
     image: "",
     country: "",

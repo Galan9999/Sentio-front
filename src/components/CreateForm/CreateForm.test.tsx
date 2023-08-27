@@ -84,7 +84,7 @@ describe("Given the CreateForm component", () => {
   });
 
   describe("When it is rendered and the button is clicked with the fields written", () => {
-    test.only("Then it should call the  function handleOnSubmit", async () => {
+    test("Then it should call the  function handleOnSubmit", async () => {
       const inputAuthortext = "author";
       const inputImageText = "image";
       const inputCountryText = "country";
