@@ -1,10 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import useUserApi from "../../hooks/useUserApi/useUserApi";
 import { LoginCredentials } from "../../types";
 import Button from "../Button/Button";
 import LoginFormStyled from "./LoginFormStyled";
 
-const LoginForm = () => {
+const LoginForm = (): React.ReactElement => {
   const { loginUser } = useUserApi();
 
   const initialState: LoginCredentials = {
