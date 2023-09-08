@@ -33,7 +33,7 @@ const useUserApi = () => {
       const response = await fetch(`${ApiUrl}${usersUrl}${registerUrl}`, {
         method: "POST",
         headers: {
-          "Content-Type": "applicatin/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(registerCredentials),
       });
