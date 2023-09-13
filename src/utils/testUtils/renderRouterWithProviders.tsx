@@ -5,6 +5,7 @@ import LoginPage from "../../pages/LoginPage/LoginPage";
 import { router } from "../../router/router";
 import { RootState } from "../../store/store";
 import renderWithProviders from "./renderWithProviders";
+import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 
 export interface RouterRenderOptions {
   ui?: React.ReactElement;
@@ -28,6 +29,10 @@ const getComponentRouter = (ui: JSX.Element) =>
     {
       path: "/my-list",
       element: <></>,
+    },
+    {
+      path: "/register",
+      element: <RegisterPage />,
     },
   ]);
 
