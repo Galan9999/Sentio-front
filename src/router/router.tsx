@@ -12,6 +12,7 @@ import CreatePage from "../pages/CreatePage/CreatePage";
 import DetailPage from "../pages/DetailPage/DetailPage";
 import HomePage from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/LoginPage/LoginPage";
+import RegisterPage from "../pages/RegisterPage/RegisterPage";
 
 const routes: RouteObject[] = [
   {
@@ -41,6 +42,14 @@ const routes: RouteObject[] = [
         element: (
           <UnprotectedRoutes>
             <LoginPage />
+          </UnprotectedRoutes>
+        ),
+      },
+      {
+        path: "/register",
+        element: (
+          <UnprotectedRoutes>
+            <RegisterPage />
           </UnprotectedRoutes>
         ),
       },
