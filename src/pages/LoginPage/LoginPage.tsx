@@ -1,5 +1,6 @@
+import { NavLink } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm";
-import LoginPageStyled from "./LoginPageStyles";
+import LoginPageStyled from "./LoginPageStyled";
 
 const LoginPage = (): JSX.Element => {
   return (
@@ -10,13 +11,13 @@ const LoginPage = (): JSX.Element => {
         <span className="login-page__register-text">
           already have an account?
         </span>
-        <a
-          className="login-page__register-link"
-          href="register"
-          aria-label="register link"
+        <NavLink
+          to={"/register"}
+          aria-label="link to register"
+          className={"login-page__register-link"}
         >
           register here
-        </a>
+        </NavLink>
       </div>
     </LoginPageStyled>
   );
