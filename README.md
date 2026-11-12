@@ -1,41 +1,101 @@
-# Sentio
+<div align="center">
 
-Sentio App is a website that allows users to browse and share their favorite quotes. It is built using React, Redux toolkit, styled components, and tested using Jest. The application has been deployed on Netlify.
+# ❝ Sentio ❞
 
-## Features
+**A quiet place to keep the quotes that stayed with you, and share them.**
 
-Users can browse through a collection of quotes and filter by author or category
-Users can add their own quotes and categorize them
-Users can update and delete their own quotes
-Users can like or dislike quotes
+![React 18](https://img.shields.io/badge/React-18-3E4E50?logo=react&logoColor=D6BD90)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.9-3E4E50?logo=typescript&logoColor=D6BD90)
+![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-1.9-3E4E50?logo=redux&logoColor=D6BD90)
+![styled-components](https://img.shields.io/badge/styled--components-5-3E4E50?logo=styledcomponents&logoColor=D6BD90)
+![Tests](https://img.shields.io/badge/tested_with-Jest_·_RTL_·_MSW-D6BD90?logo=jest&logoColor=3E4E50)
+![SonarCloud](https://img.shields.io/badge/quality-SonarCloud-D6BD90?logo=sonarcloud&logoColor=3E4E50)
 
-## Tech Stack
+<sub>Front end · the API lives in <a href="https://github.com/Galan9999/Sentio-back"><b>Sentio-back</b></a></sub>
 
-React: frontend library for building web applications
-Redux Toolkit: a library that provides a simple and efficient way to manage application state
-Styled components: popular library used to style React applications. It allows you to write actual CSS code to style custom components
-Jest: a popular JavaScript testing framework
-Netlify: cloud platform used to deploy web applications
+</div>
 
-## Future Implementations
+---
 
-Allow users to save their favorite quotes
+## The idea
 
-Add a feature to allow users to share quotes on social media
+Some sentences stay with you longer than the book they came from. Sentio is a small collection of them.
+Each quote comes with its author, where they lived and when, a portrait, and a few lines of context, so it
+reads like a page of a notebook and not like a social feed.
 
-## Getting Started
+You can browse without an account. Sign up to add your own quotes, with a portrait of the author.
 
-To get started using the Quotes App, you'll need to have the following tools installed:
+## The palette
 
-Node.js
-Clone the repository and install all the needed dependencies using npm install.
+Warm paper, sand and a deep slate green, set in **Belleza** and **Acme**.
 
-This is a full-stack project, you can find the backend code here: https://github.com/isdi-coders-2023/Carles-Galan-Final-Project-back-202301-bcn.git
+<p align="center"><img src="public/sentio.png" alt="Sentio palette: slate green, cream and sand" width="520"></p>
 
-## Running Tests
+| | Token | Hex | Used for |
+|:-:|---|---|---|
+| ![](https://img.shields.io/badge/-%20%20%20%20%20-D6BD90) | `mainColor` | `#D6BD90` | sand: buttons, accents |
+| ![](https://img.shields.io/badge/-%20%20%20%20%20-3E4E50) | `terciaryColor` | `#3E4E50` | slate green: header, contrast surfaces |
+| ![](https://img.shields.io/badge/-%20%20%20%20%20-F1FAEE) | `secondaryColor` | `#F1FAEE` | cream: cards |
+| ![](https://img.shields.io/badge/-%20%20%20%20%20-F1EFEF) | `backgroundLightColor` | `#F1EFEF` | paper: page background |
+| ![](https://img.shields.io/badge/-%20%20%20%20%20-181818) | `mainTextColor` | `#181818` | ink: text |
 
-Quotes App uses Jest for unit and integration tests. To run the test suite, use the npm test command.
+All of it lives in [`src/styles/theme.ts`](src/styles/theme.ts) and reaches every component through the
+styled-components `ThemeProvider`.
 
-## Deployment
+## What you can do
 
-To deploy Quotes App to a production environment, run the npm run build command to build a production-ready version of the app. This will generate a build directory containing the compiled code, which you can then serve using a static file server.
+| | |
+|---|---|
+| 📖 **Browse** | The home page lists every quote as a card |
+| 🔎 **Read** | `/detail/:id` shows the full quote: author, country, lifetime, tags, portrait and background |
+| ✍️ **Add** | `/create` takes a quote with its portrait (protected route) |
+| 🗑️ **Remove** | Delete a quote (signed in) |
+| 🔐 **Sign up / log in** | JWT kept client-side and decoded with `jwt-decode`; protected and unprotected routes |
+
+## How it is built
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#F1FAEE','primaryBorderColor':'#3E4E50','primaryTextColor':'#181818','lineColor':'#3E4E50','secondaryColor':'#D6BD90','tertiaryColor':'#F1EFEF'}}}%%
+flowchart LR
+    pages["Pages<br/>Home · Detail · Create<br/>Login · Register"] --> hooks["Hooks<br/>useQuotesApi · useUserApi"]
+    hooks --> api(["Sentio API"])
+    hooks --> store["Redux Toolkit<br/>quotes · quote · user · ui"]
+    store --> pages
+    store --> ui["UI slice<br/>loader · modals · toasts"]
+```
+
+```
+src/
+├── components/   Button, QuoteCard, Quotes, Detail, CreateForm, LoginForm, RegisterForm,
+│                 Header, Layout, Loader, Modals, ProtectedRoutes, UnprotectedRoutes
+├── pages/        HomePage, DetailPage, CreatePage, LoginPage, RegisterPage
+├── hooks/        useQuotesApi, useUserApi: every call to the API goes through them
+├── store/        one slice per concern: quotes, quote, user, ui
+├── router/       React Router 6, routes split into protected and unprotected
+├── mocks/        MSW handlers, so tests never hit the real API
+└── styles/       theme, global styles and the styled-components typing
+```
+
+## Quality
+
+- **25 test files** with Jest and React Testing Library. Network calls are mocked with **MSW**, so hooks and
+  pages are tested against realistic responses.
+- **Husky + lint-staged**: Prettier and ESLint run before every commit.
+- **GitHub Actions** on every push: tests, a code audit (ESLint, EditorConfig) and **SonarCloud** analysis.
+
+## Run it
+
+```bash
+npm install
+echo "REACT_APP_URL_API_USERS=<sentio-api-url>" > .env
+npm start        # http://localhost:3000
+npm test
+```
+
+You need the [Sentio API](https://github.com/Galan9999/Sentio-back) running, locally or deployed.
+
+---
+
+<div align="center">
+<sub>Made by <a href="https://github.com/Galan9999">Carles Galán</a> · 2023</sub>
+</div>
